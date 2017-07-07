@@ -1,0 +1,11 @@
+{
+"id" : "pushover",
+"name" : "Pushover",
+"licence" : "AGPL",
+"author" : "Roger Simon",
+"require" : "2.0",
+"category" : "communication",
+"hasDependency" : false,
+"hasOwnDeamon" : false,
+"maxDependancyInstallTime" : 45
+}
