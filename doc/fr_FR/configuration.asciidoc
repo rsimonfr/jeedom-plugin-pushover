@@ -36,6 +36,7 @@ En dessous vous retrouvez la configuration des commandes :
 * Sound : son a jouer sur le device lors de notification 
 * Tester : permet de tester la commande
 * supprimer (signe -) : permet de supprimer la commande
+les messages sont au format html 
 
 === Création d'un compte  Pushover 
 
