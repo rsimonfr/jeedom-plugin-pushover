@@ -65,7 +65,7 @@ class pushoverCmd extends cmd {
             "device"   =>  $this->getConfiguration('device') , 
             "retry"   =>  $this->getConfiguration('retry') ,
             "expire"   =>  $this->getConfiguration('expire') ,
-
+            "html"    =>   1, 
              ),
         CURLOPT_SAFE_UPLOAD => true,
 
