@@ -22,6 +22,59 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 define('PUSHOVERADDR', 'https://api.pushover.net/1/messages.json');
 
 class pushover extends eqLogic {
+        public function postSave() {
+                $sms = $this->getCmd(null, 'status');
+                if (!is_object($sms)) {
+                        $sms = new pushoverCmd();
+                        $sms->setLogicalId('status');
+                        $sms->setIsVisible(0);
+                        $sms->setName(__('Statut', __FILE__));
+                }
+                $sms->setType('info');
+                $sms->setSubType('string');
+                $sms->setEqLogic_id($this->getId());
+                $sms->save();
+
+                $sender = $this->getCmd(null, 'sender');
+                if (!is_object($sender)) {
+                        $sender = new pushoverCmd();
+                        $sender->setLogicalId('sender');
+                        $sender->setIsVisible(0);
+                        $sender->setName(__('Expediteur', __FILE__));
+                }
+                $sender->setType('info');
+                $sender->setSubType('string');
+                $sender->setEqLogic_id($this->getId());
+                $sender->save();
+
+
+                $receiptid = $this->getCmd(null, 'receiptid');
+                if (!is_object($receiptid)) {
+                        $receiptid = new pushoverCmd();
+                        $receiptid->setLogicalId('receiptid');
+                        $receiptid->setIsVisible(0);
+                        $receiptid->setName(__('Receipt Id', __FILE__));
+                }
+                $receiptid->setType('info');
+                $receiptid->setSubType('string');
+                $receiptid->setEqLogic_id($this->getId());
+                $receiptid->save();
+
+                $devicename = $this->getCmd(null, 'devicename');
+                if (!is_object($devicename)) {
+                        $devicename = new pushoverCmd();
+                        $devicename->setLogicalId('devicename');
+                        $devicename->setIsVisible(0);
+                        $devicename->setName(__('Nom Device', __FILE__));
+                }
+                $devicename->setType('info');
+                $devicename->setSubType('string');
+                $devicename->setEqLogic_id($this->getId());
+                $devicename->save();
+
+
+        }
+
     
 }
 
@@ -35,13 +88,13 @@ class pushoverCmd extends cmd {
     /*     * *********************Methode d'instance************************* */
 
     public function preSave() {
-        if ($this->getConfiguration('token') == '') {
+/*        if ($this->getConfiguration('token') == '') {
             throw new Exception('token ne peut etre vide');
         }
         if ($this->getConfiguration('user') == '') {
             throw new Exception('user ne peut etre vide');
         }
-
+*/
     }
 
     public function execute($_options = null) {
@@ -65,7 +118,9 @@ class pushoverCmd extends cmd {
             "device"   =>  $this->getConfiguration('device') , 
             "retry"   =>  $this->getConfiguration('retry') ,
             "expire"   =>  $this->getConfiguration('expire') ,
-            "html"    =>   1, 
+            "callback" => network::getNetworkAccess('external') . '/plugins/pushover/core/php/jeePushover.php?apikey=' . config::byKey('api') . '&id='. $this->getEqLogic_id() ,
+            "html"     =>  1, 
+
              ),
         CURLOPT_SAFE_UPLOAD => true,
 
