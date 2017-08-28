@@ -26,6 +26,7 @@ if (init('apikey') != config::byKey('api') || config::byKey('api') == '') {
 $content = file_get_contents('php://input');
 log::add('pushover', 'debug', $content);
 $id = init('id');
+$cmdid = init('cmdid');
 $eqLogic = pushover::byId($id);
 if (!is_object($eqLogic)) {
         echo json_encode(array('text' => __('Id inconnu : ', __FILE__) . init('id')));
@@ -41,4 +42,5 @@ $eqLogic->checkAndUpdateCmd('sender', $sender );
 $eqLogic->checkAndUpdateCmd('status', $ack_status );
 $eqLogic->checkAndUpdateCmd('receiptid', $receipt );
 $eqLogic->checkAndUpdateCmd('devicename', $devicename );
+$eqLogic->checkAndUpdateCmd('cmdid', $cmdid );
 ?>

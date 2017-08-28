@@ -47,6 +47,17 @@ class pushover extends eqLogic {
                 $sender->setEqLogic_id($this->getId());
                 $sender->save();
 
+                $cmdid = $this->getCmd(null, 'cmdid');
+                if (!is_object($cmdid)) {
+                        $cmdid = new pushoverCmd();
+                        $cmdid->setLogicalId('cmdid');
+                        $cmdid->setIsVisible(0);
+                        $cmdid->setName(__('Commande Id', __FILE__));
+                }
+                $cmdid->setType('info');
+                $cmdid->setSubType('string');
+                $cmdid->setEqLogic_id($this->getId());
+                $cmdid->save();
 
                 $receiptid = $this->getCmd(null, 'receiptid');
                 if (!is_object($receiptid)) {
@@ -118,7 +129,7 @@ class pushoverCmd extends cmd {
             "device"   =>  $this->getConfiguration('device') , 
             "retry"   =>  $this->getConfiguration('retry') ,
             "expire"   =>  $this->getConfiguration('expire') ,
-            "callback" => network::getNetworkAccess('external') . '/plugins/pushover/core/php/jeePushover.php?apikey=' . config::byKey('api') . '&id='. $this->getEqLogic_id() ,
+            "callback" => network::getNetworkAccess('external') . '/plugins/pushover/core/php/jeePushover.php?apikey=' . config::byKey('api') . '&id='. $this->getEqLogic_id() . '&cmdid=' . $this->getId() ,
             "html"     =>  1, 
 
              ),
