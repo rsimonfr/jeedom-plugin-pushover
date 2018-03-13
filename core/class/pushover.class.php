@@ -86,6 +86,16 @@ class pushover extends eqLogic {
 
         }
 
+        public function execCurlWithFields($fields){
+            curl_setopt_array($ch = curl_init(), array(
+                CURLOPT_URL => "https://api.pushover.net/1/messages.json",
+                CURLOPT_POSTFIELDS => $fields,
+                CURLOPT_SAFE_UPLOAD => true,
+            ));
+            curl_exec($ch);
+            curl_close($ch);
+        }
+
     
 }
 
@@ -109,21 +119,19 @@ class pushoverCmd extends cmd {
     }
 
     public function execute($_options = null) {
+        $eqLogic = $this->getEqLogic();
         if ($_options === null) {
             throw new Exception(__('Les options de la fonction ne peuvent etre null', __FILE__));
         }
         if ($_options['message'] == '' ) {
-            throw new Exception(__('Le message et le sujet ne peuvent être vide', __FILE__));
+            throw new Exception(__('Le message et le sujet ne peuvent etre vide', __FILE__));
         }
-
-
-        curl_setopt_array($ch = curl_init(), array(
-        CURLOPT_URL => "https://api.pushover.net/1/messages.json",
-        CURLOPT_POSTFIELDS => array(
+		
+		$fields = array(
             "token" => $this->getConfiguration('token'),
             "user" =>  $this->getConfiguration('user'),
             "message" => $_options['message'] ,
-            "title"   => $_options['title'] , 
+            "title"   => $_options['title'] ,
             "priority" =>  $this->getConfiguration('priority' ) , 
             "sound"    =>  $this->getConfiguration('sound') , 
             "device"   =>  $this->getConfiguration('device') , 
@@ -131,13 +139,25 @@ class pushoverCmd extends cmd {
             "expire"   =>  $this->getConfiguration('expire') ,
             "callback" => network::getNetworkAccess('external') . '/plugins/pushover/core/php/jeePushover.php?apikey=' . config::byKey('api') . '&id='. $this->getEqLogic_id() . '&cmdid=' . $this->getId() ,
             "html"     =>  1, 
+        );
 
-             ),
-        CURLOPT_SAFE_UPLOAD => true,
-
-        ));
-        curl_exec($ch);
-        curl_close($ch);
+        /*  Ajout d'une image depuis le plugin camera : pour le moment, il n'est possible d'ajouter qu'une seule image par notification
+            on boucle donc sur toutes les images et on envoi une notification par tour de boucle
+            Extrait doc. pushover :
+            Each message may only include one attachment, and attachments are currently limited to 2,621,440 bytes (2.5 megabytes)
+        */
+        if (array_key_exists('files', $_options) && is_array($_options['files']) && is_file($_options['files'][0])) {
+            foreach ($_options['files'] as $file) {
+                log::add('pushover', 'debug', 'Fichier detecte : ' . $file);
+                $size = number_format(filesize($file) / 1048576, 2);
+                log::add('pushover', 'debug', 'Taille du fichier en Mo : ' . $size . ' (limite pushover 2,5 Mo)');
+                $fields["attachment"] = new CURLFile($file);
+                $eqLogic->execCurlWithFields($fields);
+            }
+        } else {
+            // Si il n'y a pas d'image
+            $eqLogic->execCurlWithFields($fields);
+        }
     }
 
     /*     * **********************Getteur Setteur*************************** */
