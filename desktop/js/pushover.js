@@ -76,6 +76,7 @@ function addCmdToTable(_cmd) {
     tr += '<td><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="retry"></td>';
     tr += '<td><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="expire"></td>';
     tr += '<td>' + pushoversound + '</td>' ; 
+    tr += '<td><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="localfile"></td>';
     tr += '<td>';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="type" value="action" style="display : none;">';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="subType" value="message" style="display : none;">';

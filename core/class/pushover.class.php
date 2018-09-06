@@ -155,6 +155,11 @@ class pushoverCmd extends cmd {
                 $eqLogic->execCurlWithFields($fields);
             }
         } else {
+            // image dans LocalFile 
+            $fichier_local = $this->getConfiguration('localfile');
+            if (file_exists($fichier_local)) {
+            $fields["attachment"] =  new CURLFile($fichier_local); 
+            }
             // Si il n'y a pas d'image
             $eqLogic->execCurlWithFields($fields);
         }
