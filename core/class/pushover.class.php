@@ -156,9 +156,10 @@ class pushoverCmd extends cmd {
             }
         } else {
             // image dans LocalFile 
-            $fichier_local = $this->getConfiguration('localfile');
+            $fichier_local = trim ( jeedom::evaluateExpression($this->getConfiguration('localfile')), '"');
+            log::add('pushover', 'debug', 'Fichier detecte : ' . $fichier_local) ;
             if (file_exists($fichier_local)) {
-            $fields["attachment"] =  new CURLFile($fichier_local); 
+               $fields["attachment"] =  new CURLFile($fichier_local); 
             }
             // Si il n'y a pas d'image
             $eqLogic->execCurlWithFields($fields);
