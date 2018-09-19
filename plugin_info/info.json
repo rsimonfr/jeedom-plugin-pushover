@@ -7,5 +7,7 @@
 "category" : "communication",
 "hasDependency" : false,
 "hasOwnDeamon" : false,
-"maxDependancyInstallTime" : 45
+"maxDependancyInstallTime" : 45,
+"changelog" : "https://github.com/rsimonfr/jeedom-plugin-pushover",
+"documentation" : "https://github.com/rsimonfr/jeedom-plugin-pushover/blob/master/doc/fr_FR/configuration.asciidoc"
 }
