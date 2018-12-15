@@ -62,7 +62,7 @@ Pour creer une application (par exemple Jeedom), cliquer sur register an applica
 
 une fois l application cree recuperer l id genere  pour le mettre dans le champs Token 
 
-![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot6.png[])
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot6.png)
 
 Vos devices apparaitront dans la liste apres l installation de l application Android ou IOS sur vos telephones et tablettes 
 
