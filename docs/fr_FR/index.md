@@ -5,7 +5,7 @@ Ce plugin permet d'envoyer un évènement à Pushover
 
 Après téléchargement du plugin il vous faut l'activer, celui-ci ne necessite aucune autre configuration.
 
-![PushoverScreenshot](/images/pushover_screenshot.png)
+![PushoverScreenshot](/jeedom-plugin-pushover/images/pushover_screenshot.png)
 
 === Configuration des équipements
 
@@ -18,7 +18,7 @@ Comme à beaucoup d'endroit sur Jeedom, mettre la souris tout à gauche permet d
 
 Une fois que vous cliquez sur l'un d'eux, vous obtenez : 
 
-![GitHub Logo](/images/pushover_screenshot2.p)
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot2.png)
 
 
 Vous retrouvez ici toute la configuration de votre équipement : 
@@ -45,24 +45,24 @@ En dessous vous retrouvez la configuration des commandes :
 
 Creez un compte sur Pushover si ce n'est pas deja fait, en allant sur link::https://pushover.net[Pushover] : 
 
-![GitHub Logo](/images/pushover_screenshot3.png)
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot3.png)
 
 Renseignez votre adresse mail et votre mot de passe   faites creer :
 
 Une nouvelle page apparait avec l'id User a mettre dans le champs User 
 
 
-![GitHub Logo](/images/pushover_screenshot4.png)
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot4.png)
 
 Avant de creer une application il faudra verifier l adresse email grace au mail envoye par Pushover 
 
 Pour creer une application (par exemple Jeedom), cliquer sur register an application
 
-![GitHub Logo](/images/pushover_screenshot5.png)
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot5.png)
 
 une fois l application cree recuperer l id genere  pour le mettre dans le champs Token 
 
-![GitHub Logo](/images/pushover_screenshot6.png[])
+![GitHub Logo](/jeedom-plugin-pushover/images/pushover_screenshot6.png[])
 
 Vos devices apparaitront dans la liste apres l installation de l application Android ou IOS sur vos telephones et tablettes 
 
