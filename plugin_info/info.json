@@ -8,6 +8,6 @@
 "hasDependency" : false,
 "hasOwnDeamon" : false,
 "maxDependancyInstallTime" : 45,
-"changelog" : "https://rsimonfr.github.io/jeedom-plugin-pushover/#lanquage#/changelog",
+"changelog" : "https://rsimonfr.github.io/jeedom-plugin-pushover/fr_FR/changelog",
 "documentation" : "https://rsimonfr.github.io/jeedom-plugin-pushover/#language#/"
 }
